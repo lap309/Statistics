@@ -1,0 +1,75 @@
+# We would like to build a regression model to predict an automobile’s fuel efficiency (in mpg or miles per gallon) from vehicle features.
+import pandas as pd
+
+df = pd.read_csv('mpg')
+print(df.head(5))
+print(df.info())
+
+
+#The dataset has nine columns, with self-explanatory titles. There are 398 rows in the dataset. One column, horsepower, has 6 missing values. We focus on linear regression in this lesson so we simply drop the rows with missing values to get a clean dataset. (This is by no means the best approach since we will lose valuable data points. One alternative is estimating horsepower by other factors, ie. displacement and acceleration.)
+
+#simply drop missing values
+mpg.dropna(inplace=True)
+mpg.info()
+
+print(df.describe())
+
+########## Regression Model
+#The dependent variable (or response) will be mpg
+# We need to pick a set of candidate dependent variables from the other 8 columns
+
+######### Creating dummy variables
+# We need to create dummy variables for the origin column values
+mpg.origin.unique()
+
+
+# Statsmodel will do this for us though
+# To construct the regression model, we define a string-formula using column names (column names can’t have whitespaces). For this dataset and the variables we chose, the formula is defined as:
+
+import statsmodels.formula.api as smf
+
+formula = 'mpg ~ horsepower + weight + C(origin)'
+model = smf.ols(formula, data=mpg)
+result = model.fit()
+
+result.summary()
+
+############# Interpretation
+# OLS stands for Ordinary Least Squares, meaning that we’re trying to fit a model that minimizes the square of distance of each point from the model regression line.
+This model has an $R^2$ value of 0.719, meaning that 71.9% of the variance in our dependent variable (mpg) can be explained by this model.
+
+Based on the coefficient values, we can construct the regression equation: mpg = 43.7 - 0.0535 horsepower - 0.0048 weight + 1.7811 origin.japan - 0.9611 origin.usa
+This reads:
+
+If horsepower increases by 1, mpg will decrease by 0.0535.
+If weight increases by 1 pound, mpg will decrease by 0.0048.
+If the origin is Japan, mpg will increase by 1.7811 (compared to European cars).
+If the origin is USA, mpg will decrease by 0.9611 (compared to European cars).
+For an European car, origin.japan=0 and origin.usa=0, yielding the equation:
+mpg = 43.7 - 0.0535 horsepower - 0.0048 weight
+
+This means that the impact of origin has already been incorporated in the $y$-intercept. This explains why the impact of origin.japan and origin.usa is on top of European cars.
+So far, so good: we have a model that can predict automotive gas mileage using horsepower, weight, and origin to a certain extent ($R^2=0.719$). But looking into the coefficient table further, we can see some statistical information which illuminates what’s going on. In particular, $t$ scores and $p$ values ($p>	t	$) provide support for a hypothesis test. $	t	>2$ or $p<0.05$ indicates that a coefficient is statistically significant (at 95% confidence). The coefficient of origin.usa has a $p$ value of 0.134, which means it’s not statistically significant, or at least that we can’t reject the null hypothesis that the coefficient is 0 (at 95% confidence). This is also indicated by the 95% confidence interval of the coefficient, -2.220 to 0.298, which includes 0. Based on the $p$-value, we can say that Japanese cars are more efficient than European cars holding horsepower and weight constant, but we can’t say the same thing for American cars at 95% confidence level.
+
+############## Adding in model year
+Fuel efficiency generally improves over time, so it make sense to consider model_year in the regression model as independent variable. The model_year column contains numeric values, we can add it as a continuous variable. The formula then looks like this:
+mpg ~ horsepower + weight + C(origin) + model_year
+
+However, this model assumes that fuel efficiency changes linearly over time, which is not obviously true. It is, in fact, better to add model_year into the regression model as a categorical feature, leadind to the following formula:
+mpg ~ horsepower + weight + C(origin) + C(model_year)
+formula = 'mpg ~ horsepower + weight + C(origin) + model_year'
+model = smf.ols(formula, data=mpg)
+result = model.fit()
+result.summary()
+
+We can see that adding model_year to the model increases $R^2$ from 0.719 to 0.819. The coefficient of model_year is 0.7544, which means mpg increases by 0.7544 each year. The coefficient is also statistically significant. Let’s see what we get when we add model_year to the regression model as a categorical variable.
+
+formula = 'mpg ~ horsepower + weight + C(origin) + C(model_year)'
+model = smf.ols(formula, data=mpg)
+result = model.fit()
+result.summary()
+
+The new model has $R^2 = 0.852$. Looking into the coefficients of dummy variables of model_year, we can see that from 1971 to 1976, there’s not much improvement in vehicle mpg; while from 1977 to 1982, vehicle mpg has significant improvements every year. This model gives better $R^2$, revealing insight into fuel economy changes over time. One drawback of this model is that we can’t predict vehicle gas mileage with it if the vehicle is made after 1982. But overall, we can see that adding model_year as a categorical variable gives us a better regression model.
+
+When we add model_year to the regression model, the coefficient of horsepower is no longer significant. This could indicate that there is multicollinearity between variables, or that horsepower could be explained by other independent variables. This is a very important concept in linear regression that deserves careful investigation to tease out.
+

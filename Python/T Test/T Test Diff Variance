@@ -1,0 +1,8 @@
+from scipy import stats
+
+#gather n for both samples
+df_grouped = df.groupby('group_col', as_index=False).agg({'metric_col':'count'})
+sample1_n = df_grouped[df_grouped[group_col]=='value_1']
+sample2_n = df_grouped[df_grouped[group_col]== 'value_2']
+
+stats.ttest_ind(sample1_n[metric_col], sample2_n[metric_col], equal_var=False)

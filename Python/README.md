@@ -1,3 +1,0 @@
-Scipy
-
-- T Test

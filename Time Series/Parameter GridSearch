@@ -48,23 +48,23 @@ def SARIMA_grid(train_data, order, seasonal_order):
             try:
                 model = SARIMAX(endog=train_data, order=i, seasonal_order=j)
                 result = model.fit()
-                predict = result.predict()
+                pred = result.get_prediction(test.index[0], test.index[-1]).summary_frame()['mean']
             
                 # calculate evaluation metrics: MAPE, RMSE, AIC & BIC
-                MAPE = (abs((train_data-predict)[1:])/(train_data[1:])).mean()
-                RMSE = rmse(train_data[1:], predict[1:])
+                CV_MAPE = (abs((test-pred))/(test)).mean()
+                CV_RMSE = rmse(test, pred)
                 AIC = result.aic
                 BIC = result.bic
             
                 # create a list of order, seasonal order & evaluation metrics
-                info = [i, j, MAPE, RMSE, AIC, BIC]
+                info = [i, j, CV_MAPE, CV_RMSE, AIC, BIC]
                 model_info.append(info)
                 
             except:
                 continue
             
     # create a dataframe to store info of all models
-    columns = ["order", "seasonal_order", "MAPE", "RMSE", "AIC", "BIC"]
+    columns = ["order", "seasonal_order", "CV_MAPE", "CV_RMSE", "AIC", "BIC"]
     model_info = pd.DataFrame(data=model_info, columns=columns)
     return model_info
 
@@ -91,7 +91,8 @@ least_AIC
 # 10 least BIC models
 least_BIC = model_info.nsmallest(10, "BIC")
 
-#################### Model Plotting
+
+#################### Model RUNNING AND PLOTTING RESULTS
 # fit the models of least MAPE, least RMSE, least AIC/BIC & least MAPE among least AIC/BIC
 order_list = [(11,1,2), (11,1,11), (1,2,1), (2,1,1)]
 seasonal_order_list = [(1,0,1,12), (1,0,1,12), (1,2,1,12), (1,2,1,12)]

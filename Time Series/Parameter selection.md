@@ -19,7 +19,7 @@ Most stationary data will be roughly horizontal and will hav eno predictable pat
 Subtracting the current value of the series from the previous one for from a lagged value. Computing the change between consecutive observations.
 
 It helps stabilize the mean of a time series by removing change in the level of the time series and therefore eliminating/reducing trend and seasonality. The typical tange of d and D is [0,1,2] because second order differencing (d=2) is typically enough to make a series stationary in most cases. If the time series does not reach stationarity by econd order differencing, the data quality should be considered.
-![Diffferencing Example Graphs](differencing_graph_examples.png "Differencing Examples")
+![Diffferencing Example Graphs](./graph_images/differencing_graph_examples.PNG "Differencing Examples")
 
 ##### Autocorrelation
 The degree of similarity between changes in a successive time intervals. <br>

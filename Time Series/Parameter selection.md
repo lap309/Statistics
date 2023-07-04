@@ -47,3 +47,8 @@ How Correlated is the time series with itself (all past points)?
 How correlated is one time series point with the previous time series point or previous lag period (only the preveeding point)? 
 
 P can be determined based on the most significant lag in the partial autocorrelation plot. Make sure to plot the PACF plot based off of the order of differencing chosen. (using the data AFTER differencing if differencing is taken place)
+
+
+##### Moving Average
+Moving averages helps by smoothing out the volatility of constantly changing data, therefore reducing trends or seasonality. Fluctuations are reduced. 
+![Moving Average Example Graphs](./graph_images/moving_average.PNG "Moving Average Example")

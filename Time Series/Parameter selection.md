@@ -45,11 +45,14 @@ How Correlated is the time series with itself (all past points)?
 
 “q” can be estimated by looking at the number of total lags crossing the threshold
 
+In the graph, the blue section indicates where the lags are no longer significant. You want to select any lags outside of this blue area, or the lag that has the highest significance
+
 ##### Partial Autocorrelation
 How correlated is one time series point with the previous time series point or previous lag period (only the preveeding point)? 
 
 P can be determined based on the most significant lag in the partial autocorrelation plot. Make sure to plot the PACF plot based off of the order of differencing chosen. (using the data AFTER differencing if differencing is taken place)
 
+In the graph, the blue section indicates where the lags are no longer significant. You want to select any  lags outisde of this region, or the lag that has the highest significance
 
 ##### Moving Average
 Moving averages helps by smoothing out the volatility of constantly changing data, therefore reducing trends or seasonality. Fluctuations are reduced. 

@@ -1,0 +1,39 @@
+##Calculate the median
+
+ls=input('Enter a list of numbers: ')
+length=len(ls)
+
+def median(ls):
+  ls.sort()
+  if length%2==0:
+    median_index = length/2
+    median_even=(ls[median_index]+ls[median_index-1])/2
+    return median_even
+
+  else:
+    median_index=length//2
+    median_odd =ls[med_index]
+    return median_odd
+  return median_index
+
+##Calculate outliers
+def outliers(ls):
+  outliers=[]
+  ##run the median function
+  lower=ls[:median_index]
+  #run median function on lower. This will be the 1st quartile. save as new variable Q1
+  if length%2==0:
+    upper_even = ls[median_index:]
+    #run median function on upper. This will be the 3rd quartile. save as new variable Q3
+    median(upper_even)
+  else:
+    upper_odd=ls[median_index+1:]
+    #run median function on upper. This will be the 3rd quartile. save as new variable Q3
+    median(upper_odd)
+    
+  outliers=(Q3-Q1)*1.5
+  for elem in ls:
+    if Q1-outliers or Q3+outliers:
+        outliers.append(x)
+  print('There are {} outliers'.format(len(outliers))
+  print(outliers)

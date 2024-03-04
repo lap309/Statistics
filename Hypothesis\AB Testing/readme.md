@@ -7,7 +7,7 @@ Ex: 	pop size N = 1000			Sample size n = 50 <br>
     	Pop mean = 150<br>
   	  Pop st_dev = 6<br>
 
-All possible samples (with replacement) = 1000^ 50
+All possible samples (with replacement) = 1000^ 50 <br>
 1000 ^ 50 sample means will be in the distribution for CLT and that distribution will be normally distributed
 The larger the sample size, the more normally distributed it will be. Why? 
 Because if we increase the sample size, we have more values that will kind of even out the sample mean, and will get it closer to the average.

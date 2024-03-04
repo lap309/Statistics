@@ -27,8 +27,45 @@ If this is not the case, then we reject our null hypothesis and can say our data
 
 
 # Hypothesis Tests
-* Z-Test <br>
-    n>= 30 <br>
-  population standard deviation must be known
-* T-Test
-* Chi-Squared Test: To determine if the expected and observed results are well-fitted. Chi-square test analyzes the differences between categorical variables from a random sample. The test's fundamental premise is that the observed values in your data should be compared to the predicted values that would be present if the null hypothesis were true.
+### One Sample
+Used for when comparing a new hypothesis to an already existing threshold <br> <br>
+__Z-Test for Population Mean__ <br>
+Assumptions:
+Random Sampling was used <br>
+Population distribution is normal OR n >=30 <br>
+Population standard deviation MUST be known <br> <br>
+
+__Z Test for Population Proportion__ <br>
+Assumptions: <br>
+Random Sampling was used <br>
+n*p>= 10 AND n*(p-1)>=10 <br>
+If sampling w/o replacement, n is no more than 10! of the population size
+
+__T-Test for Sample Means__ <br>
+Assumptions:
+Population distribution is normal OR n >=30 <br>
+Population standard deviation is unknown <br> <br>
+
+### Two Sample 
+Used when comparing the performance of two samples/groups <br><br>
+__T test for Comparing Two Populations__ <br>
+
+
+Properties: <br>
+* bell shaped and centered at zero (just like z distribution)
+* each _t_ distribution is more spread out than the _z_ distribution
+* As the number of df increases, the spread of the _t_ distribution decreases and the sequence of _t_ distributions approaches the _z_ distribution
+  <br>
+__Chi-Squared Test:__ <br>
+To determine if the expected and observed results are well-fitted. Chi-square test analyzes the differences between categorical variables from a random sample. The test's fundamental premise is that the observed values in your data should be compared to the predicted values that would be present if the null hypothesis were true.
+
+# Errors
+Type I Error: alpha/significance level <br>
+Type II Error: beta
+Power: 1- (Type II Error): the probability of rejecting the null hypothesis<br>
+<br>
+Use the maximum acceptable value as the level of significance because using a smaller alphs increases beta.<br><br>
+Variables that impact the Power of the Test<br>
+The larger the size of the discrepancy between the hypothesized value and the actual vlaue of the population characteristic, the greater the power<br>
+The larger the significance level, alpha, the grater the power of the test <br>
+The larger the sample size, the greater the power of the test

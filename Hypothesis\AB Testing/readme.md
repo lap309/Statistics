@@ -1,7 +1,7 @@
 # Central Limit Theorem
 
 #### Part 1: <br>
-The distribution of sample means with replacement (from a greater population) will approximately be normally distributed as the sample size gets larger. This will hold true regardless of whether the source population is normal or skewed, provided the sample size is sufficiently large (usually n > 30). If the population distribution is normal, you don’t need n>30
+The distribution of sample means with replacement (from a greater population) will approximately be normally distributed as the number of samples gets larger. This will hold true regardless of whether the source population is normal or skewed, provided the sample size is sufficiently large (usually n > 30). If the population distribution is normal, you don’t need n>30
 
 Ex: 	pop size N = 1000			Sample size n = 50 <br>
     	Pop mean = 150<br>
@@ -9,8 +9,8 @@ Ex: 	pop size N = 1000			Sample size n = 50 <br>
 
 All possible samples (with replacement) = 1000^ 50 <br>
 1000 ^ 50 sample means will be in the distribution for CLT and that distribution will be normally distributed
-The larger the sample size, the more normally distributed it will be. Why? 
-Because if we increase the sample size, we have more values that will kind of even out the sample mean, and will get it closer to the average.
+The larger the number of samples taken, the more normally distributed it will be. Why? 
+Because if we increase the number of samples taken, we have more values that will kind of even out the sample mean, and will get it closer to the average.
 
 Essentially, everything will average out if you have enough data.
 

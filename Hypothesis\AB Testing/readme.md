@@ -32,19 +32,25 @@ If this is not the case, then we reject our null hypothesis and can say our data
 
 
 # Hypothesis Tests
-### One Sample
+## One Sample
 Used for when comparing a new hypothesis to an already existing threshold. Compare the mean of a measured group to a known mean <br> <br>
 ### Z-Test for Population Mean
+
 Assumptions:
 Random Sampling was used <br>
 Population distribution is normal OR n >=30 <br>
 Population standard deviation MUST be known <br> <br>
 
-#### Z Test for Population Proportion
+#### Test for Population Proportion
 Assumptions: <br>
+Sample proportions are normally distributed
 Random Sampling was used <br>
-n*p>= 10 AND n*(p-1)>=10 <br>
+n$*$p$>=$ 10 AND n$*$(p-1)$>=10$ <br>
 If sampling w/o replacement, n is no more than 10! of the population size
+
+$$p = \frac{\hat{p} - p}{\sqrt{\frac{p(1-p)}{n}}}$$
+
+
 
 ### T-Test for Sample Means
 Assumptions:

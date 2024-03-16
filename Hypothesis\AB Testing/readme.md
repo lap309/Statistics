@@ -123,12 +123,17 @@ To avoid making several false positives (rejecting when we shouldn't), we should
 
 ### Bonferroni Correction
 
-With this method, we define a new significance threshold for our hypothesis tests such that:<br>
-$$\alpha_{test} = \frac{\alpha_{overall}}{ \text{number of tests}}$$
+With this method, we define a new significance threshold for our hypothesis tests taking into account the number of tests we have such that:<br>
+$$\alpha_{per.test} = \frac{\alpha_{overall}}{ \text{number of tests}}$$
 <br>
-When we have many tests, however, the p-values for the individual tests can become very small and cause us to be too strict. This means that we can easily miss cases when we should have rejected the null hypothesis, inflating our type II error. <br>
 
-### Holm-Bonferroni Method**
+Where the alpha for each individual test would be $$alpha_{per.test}$$, and would equate to the general overall $$alpha$$ which is typically 0.05. For this to work well and to increase the power of the test, it is better to have larger samples for the effect to be detected given the Bonferroni Correction.<Br>
+
+When we have many tests, however, the p-values for the individual tests can become very small and cause us to be too strict. This means that we can easily miss cases when we should have rejected the null hypothesis, inflating our type II error. <br>
+<br>
+For this reason, it's best practice to limit the number of comparisons done to a few well-motivated cases ,rather than on running on all possible combinations
+
+### Holm-Bonferroni Method
 The significance threshold for each individual test with this method is:<br>
 $$\alpha_{test} = \frac{\alpha_{overall}}{ \text{number of tests}-\text{rank number of p-value} +1}$$
 <br>
@@ -150,7 +155,7 @@ __Type II Error: beta__ <br>
 "False Negative": failed to identify an effect/difference between samples. This is considered worse. <Br>
 ex: getting a negative pregnancy test when you are in fact pregnant
 <br>
-Power: 1- (Type II Error): the probability of rejecting the null hypothesis<br>
+Power: 1- (Type II Error): the probability of rejecting the null hypothesis given that the null is false<br>
 <br>
 | Decision       | $H_0$ true|   $H_0$ false |
 | ------------- |:-------------:| -----:|
@@ -162,5 +167,5 @@ Use the maximum acceptable value as the level of significance because using a sm
 
 __Variables that impact the Power of the Test__<br>
 The larger the size of the discrepancy between the hypothesized value and the actual vlaue of the population characteristic, the greater the power<br>
-The larger the significance level, alpha, the grater the power of the test <br>
-The larger the sample size, the greater the power of the test
+Larger significance level(alpha), more power <br>
+Larger sample size, more power

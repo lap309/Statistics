@@ -1,0 +1,9 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# correlation and relationship of the whole dataframe
+mask = np.triu(df.corr())
+plt.figure(figsize=(10,8))
+sns.heatmap(df.corr().round(2), vmin = -1, vmax = 1,annot=True, cmap = 'coolwarm', mask = mask)
+plt.show()

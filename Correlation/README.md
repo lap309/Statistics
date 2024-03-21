@@ -21,7 +21,7 @@ Used to evaluate predictions by a binary classifier <br><br>
 #### Point Biserial Correlation: Binary category and Continuous variable
 Based off of Pearsons
 
-### $\chi^2$ Chi-Squared Test of Independence: Correlation between 2 categorical variables
+#### $\chi^2$ Chi-Squared Test of Independence: Correlation between 2 categorical/binary variables
 Tests whether two vategorical variables are related to each other.
 Chi-squared test can answer questions like: <br>
 - Are people's favorite color related to their favorite fruit?
